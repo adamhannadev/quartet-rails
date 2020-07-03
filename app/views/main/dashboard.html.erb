@@ -6,7 +6,9 @@
 
  <ul>
      <% @recordings.each do |r| %>
+     <%=  link_to "/" + r[:url] do %>
      <li><%= r[:title] %> - <%= r[:recorded_date] %></li>
+     <% end %>
      <% end %>
 
 </ul>

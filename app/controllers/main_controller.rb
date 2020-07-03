@@ -5,6 +5,13 @@ class MainController < ApplicationController
   end
 
   def dashboard
+    @recordings = [
+      {
+        url: 'recordingurl.mp3',
+        title: 'Birlinn',
+        recorded_date: Time.now.strftime('%c')
+      }
+    ]
   end
 
   def choose_song

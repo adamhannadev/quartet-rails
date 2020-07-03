@@ -1,2 +1,20 @@
-<h1>Main#dashboard</h1>
-<p>Find me in app/views/main/dashboard.html.erb</p>
+<h1>Dashboard</h1>
+
+<p>Hello, <%= current_user.email %></p>
+
+<p>Here are your recordings.</p>
+
+ <ul>
+     <% @recordings.each do |r| %>
+     <li><%= r[:title] %> - <%= r[:recorded_date] %></li>
+     <% end %>
+
+</ul>
+
+<p>Here are your mixes.</p>
+
+<ul>
+    <li>Birlinn - Mixed - Jane, Adam, Irena</li>
+</ul>
+
+<%= button_to "Record Part", choose_song_path, method: "get" %>

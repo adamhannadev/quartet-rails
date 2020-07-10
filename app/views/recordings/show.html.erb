@@ -11,8 +11,16 @@
 </p>
 
 <p>
+  <% @path = rails_blob_path(@recording.rec_file) %>
+  <audio controls>
+    <source src="<%= @path %>" type="audio/mp3">
+    Your browser does not support the audio tag.
+  </audio>
+</p>
+
+<p>
   <strong>Title:</strong>
-   <%=link_to url_for(@recording.rec_file) do %> <%= @recording.title %> <% end %>
+  <%=link_to url_for(@recording.rec_file) do %> <%= @recording.title %> <% end %>
 </p>
 
 <%= link_to 'Edit', edit_recording_path(@recording) %> |

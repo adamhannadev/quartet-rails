@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recordings
   get 'dashboard' => 'main#dashboard'
   get 'choose-song'=> 'main#choose-song'
   get 'record' => 'main#record'

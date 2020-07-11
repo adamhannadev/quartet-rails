@@ -26,8 +26,16 @@
   <%= form.text_field :title %>
 </div>
 <div class="field" data-controller="recording">
-  <%= form.label :rec_file %>
-  <%= form.file_field :rec_file %>
+
+  <audio controls data-target="recording.activeTrack">
+  </audio><br>
+
+  <audio controls data-target="recording.saved">
+  </audio>
+
+  <div data-action="click->recording#start">Start</div><Br>
+  <div data-action="click->recording#stop">Stop</div>
+  <input type="hidden" name="recording[rec_file]" id="recording_rec_file" value="" data-target="recording.recFile" />
 </div>
 
 

@@ -1,0 +1,37 @@
+<%= form_with(model: backing_track, local: true) do |form| %>
+<% if backing_track.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(backing_track.errors.count, "error") %> prohibited this backing_track from being saved:</h2>
+
+  <ul>
+    <% backing_track.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= form.label :song_title %>
+  <%= form.text_field :song_title %>
+</div>
+
+<div class="field">
+  <%= form.label :song_part %>
+  <%= form.text_field :song_part %>
+</div>
+
+<div class="field">
+  <%= form.label :user_id %>
+  <%= form.text_field :user_id %>
+</div>
+
+<div class="field">
+  <%= form.label :track %>
+  <%= form.file_field :track %>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>

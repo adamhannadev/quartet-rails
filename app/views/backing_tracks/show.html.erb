@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Song title:</strong>
+  <%= @backing_track.song_title %>
+</p>
+
+<p>
+  <strong>Song part:</strong>
+  <%= @backing_track.song_part %>
+</p>
+
+<p>
+  <% @path = rails_blob_path(@backing_track.track) %>
+  <audio controls>
+    <source src="<%= @path %>" type="audio/mp3">
+    Your browser does not support the audio tag.
+  </audio>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @backing_track.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_backing_track_path(@backing_track) %> |
+<%= link_to 'Back', backing_tracks_path %>

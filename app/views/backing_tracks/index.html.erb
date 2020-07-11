@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Backing Tracks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Song title</th>
+      <th>Song part</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @backing_tracks.each do |backing_track| %>
+      <tr>
+        <td><%= backing_track.song_title %></td>
+        <td><%= backing_track.song_part %></td>
+        <td><%= backing_track.user_id %></td>
+        <td><%= link_to 'Show', backing_track %></td>
+        <td><%= link_to 'Edit', edit_backing_track_path(backing_track) %></td>
+        <td><%= link_to 'Destroy', backing_track, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Backing Track', new_backing_track_path %>

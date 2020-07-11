@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :backing_tracks
   resources :recordings
   devise_for :users
   root "main#index"

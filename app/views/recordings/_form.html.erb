@@ -1,45 +1,46 @@
-<%= form_with(model: recording, local: true) do |form| %>
-<% if recording.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(recording.errors.count, "error") %> prohibited this recording from being saved:</h2>
+<div data-controller="recording">
+  <%= form_with(model: recording, local: true) do |form| %>
+  <% if recording.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(recording.errors.count, "error") %> prohibited this recording from being saved:</h2>
 
-  <ul>
-    <% recording.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
+    <ul>
+      <% recording.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <p data-target="recording.user"><%= current_user.email %> </p>
+
+  <div class="field">
+    <%= form.label :part %>
+    <%= form.text_field :part, {"data-target" => "recording.part"} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title , {"data-target" => "recording.title"}%>
+  </div>
+  <div class="field">
+
+    <audio controls data-target="recording.activeTrack">
+    </audio><br>
+
+    <audio controls data-target="recording.saved">
+    </audio>
+
+    <div data-action="click->recording#start">Start</div><Br>
+    <div data-action="click->recording#stop">Stop</div>
+    <a href="" data-target="recording.recFile">Download</a>
+    <%= form.label :rec_file %>
+    <%= form.file_field :rec_file%>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <% end %>
 </div>
-<% end %>
-
-<div class="field">
-  <%= form.label :user_id %>
-  <%= form.text_field :user_id %>
-</div>
-
-<div class="field">
-  <%= form.label :part %>
-  <%= form.text_field :part %>
-</div>
-
-<div class="field">
-  <%= form.label :title %>
-  <%= form.text_field :title %>
-</div>
-<div class="field" data-controller="recording">
-
-  <audio controls data-target="recording.activeTrack">
-  </audio><br>
-
-  <audio controls data-target="recording.saved">
-  </audio>
-
-  <div data-action="click->recording#start">Start</div><Br>
-  <div data-action="click->recording#stop">Stop</div>
-  <input type="hidden" name="recording[rec_file]" id="recording_rec_file" value="" data-target="recording.recFile" />
-</div>
-
-
-<div class="actions">
-  <%= form.submit %>
-</div>
-<% end %>

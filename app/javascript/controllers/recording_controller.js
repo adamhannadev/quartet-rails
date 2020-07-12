@@ -12,7 +12,7 @@ import { Controller } from "stimulus"
 const audioType = "audio/wav";
 
 export default class extends Controller {
-  static targets = ["activeTrack", "saved", "recFile"]
+  static targets = ["activeTrack", "saved", "recFile", "part", "title", "user"]
 
   connect() {
     console.log("Hello from the recording controller.")
@@ -65,7 +65,9 @@ export default class extends Controller {
     // generate audio url from blob
     const audioURL = window.URL.createObjectURL(blob);
     this.savedTarget.src = audioURL;
-    this.recFileTarget.value = blob;
+    this.recFileTarget.href = audioURL;
+    this.recFileTarget.download = `${this.userTarget.innerHTML.split("@")[0]}-${this.titleTarget.value}-${this.partTarget.value}`;
+
   }
 
 }

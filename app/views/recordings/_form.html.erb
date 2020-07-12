@@ -21,11 +21,7 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= collection_select(:title, :song_title, BackingTrack.all.group("song_title"), :id, :song_title, prompt: true), {"data-target" => "recording.title"}%>
-  </div>
-  <div class="field">
-    <%= form.label :rec_file %>
-    <%= form.file_field :rec_file %>
+    <%= collection_select(:title, :song_title, BackingTrack.all.group("song_title"), :id, :song_title, prompt: true, "data-target" => "recording.title") %>
   </div>
 
   <audio controls data-target="recording.activeTrack">
@@ -37,6 +33,7 @@
   <div data-action="click->recording#start">Start</div><Br>
   <div data-action="click->recording#stop">Stop</div>
   <a href="" data-target="recording.recFile">Download</a>
+
   <%= form.label :rec_file %>
   <%= form.file_field :rec_file%>
 

@@ -1,34 +1,49 @@
-<%= form_with(model: recording, local: true) do |form| %>
-<% if recording.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(recording.errors.count, "error") %> prohibited this recording from being saved:</h2>
+<div data-controller="recording">
+  <%= form_with(model: recording, local: true) do |form| %>
+  <% if recording.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(recording.errors.count, "error") %> prohibited this recording from being saved:</h2>
 
-  <ul>
-    <% recording.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+    <ul>
+      <% recording.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 
-<%= form.hidden_field :user_id, :value => current_user.id %>
+  <p data-target="recording.user"><%= current_user.email %> </p>
 
-<div class="field">
-  <%= form.label :part %>
-  <%= select_tag "part", options_for_select([ "Soprano", "Alto", "Tenor", "Bass" ], "Soprano") %>
-</div>
+  <div class="field">
+    <%= form.label :part %>
+    <%= select_tag "part", options_for_select([ "Soprano", "Alto", "Tenor", "Bass" ], "Soprano"), {"data-target" => "recording.part"}  %>
+  </div>
 
-<div class="field">
-  <%= form.label :title %>
-  <%= collection_select(:title, :song_title, BackingTrack.all.group("song_title"), :id, :song_title, prompt: true)%>
-</div>
-<div class="field">
+  <div class="field">
+    <%= form.label :title %>
+    <%= collection_select(:title, :song_title, BackingTrack.all.group("song_title"), :id, :song_title, prompt: true), {"data-target" => "recording.title"}%>
+  </div>
+  <div class="field">
+    <%= form.label :rec_file %>
+    <%= form.file_field :rec_file %>
+  </div>
+
+  <audio controls data-target="recording.activeTrack">
+  </audio><br>
+
+  <audio controls data-target="recording.saved">
+  </audio>
+
+  <div data-action="click->recording#start">Start</div><Br>
+  <div data-action="click->recording#stop">Stop</div>
+  <a href="" data-target="recording.recFile">Download</a>
   <%= form.label :rec_file %>
-  <%= form.file_field :rec_file %>
-</div>
+  <%= form.file_field :rec_file%>
 
 
-<div class="actions">
-  <%= form.submit %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <% end %>
+
 </div>
-<% end %>

@@ -14,6 +14,7 @@ class RecordingsController < ApplicationController
 
   # GET /recordings/new
   def new
+    @backing_tracks = BackingTrack.all.group("song_title")
     @recording = Recording.new
   end
 

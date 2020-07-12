@@ -19,8 +19,8 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @backing_track.user_id %>
+  <strong>Uploaded By:</strong>
+  <%= @backing_track.user.email %>
 </p>
 
 <%= link_to 'Edit', edit_backing_track_path(@backing_track) %> |

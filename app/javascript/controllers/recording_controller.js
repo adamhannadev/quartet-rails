@@ -12,7 +12,7 @@ import { Controller } from "stimulus"
 const audioType = "audio/wav";
 
 export default class extends Controller {
-  static targets = ["activeTrack", "saved", "recFile", "part", "title", "user"]
+  static targets = ["activeTrack", "saved", "recFile", "part", "title", "user", "backingTrack"]
 
   connect() {
     console.log("Hello from the recording controller.")
@@ -29,8 +29,6 @@ export default class extends Controller {
     this.mediaRecorder = new MediaRecorder(stream);
     // init data storage for audio chunks
     this.chunks = [];
-    // this.bgAudio = new Audio(`InTheBulb.mp3`);
-    // this.bgAudio.load();
     // listen for data from media recorder
     this.mediaRecorder.ondataavailable = (e) => {
       if (e.data && e.data.size > 0) {

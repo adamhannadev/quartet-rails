@@ -24,6 +24,10 @@
     <%= collection_select(:title, :song_title, BackingTrack.all.group("song_title"), :id, :song_title, prompt: true, "data-target" => "recording.title") %>
   </div>
 
+  <audio controls data-target="recording.backingTrack">
+    <source src="<%= url_for @tracks.first.track %>" type="audio/mp3">
+  </audio>
+
   <audio controls data-target="recording.activeTrack">
   </audio><br>
 

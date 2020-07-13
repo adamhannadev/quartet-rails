@@ -27,5 +27,4 @@
 </table>
 
 <br>
-
-<%= link_to 'New Recording', new_recording_path %>
+<%= collection_select(@track, :id, BackingTrack.all.group("song_title"), :id, :song_title, prompt: "Please select a song") %>

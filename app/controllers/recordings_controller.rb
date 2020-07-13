@@ -16,7 +16,7 @@ class RecordingsController < ApplicationController
   def new
     @backing_tracks = BackingTrack.all.group("song_title")
     @recording = Recording.new
-    @tracks = BackingTrack.all
+    @track = BackingTrack.where("song_title = ? AND song_part = ?", params[:title], params[:part]).first
   end
 
   # GET /recordings/1/edit
@@ -28,7 +28,6 @@ class RecordingsController < ApplicationController
   def create
     @recording = Recording.new(recording_params)
     @recording.user = current_user
-    
     respond_to do |format|
       if @recording.save
         format.html { redirect_to @recording, notice: 'Recording was successfully created.' }

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :backing_tracks
   resources :recordings
+  get "recordings/new/:title/:part" => "recordings#new"
   devise_for :users
   get 'dashboard' => 'main#dashboard'
   root "main#index"

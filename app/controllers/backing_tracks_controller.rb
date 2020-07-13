@@ -25,7 +25,7 @@ class BackingTracksController < ApplicationController
   # POST /backing_tracks.json
   def create
     @backing_track = BackingTrack.new(backing_track_params)
-
+    @backing_track.user_id = current_user.id
     respond_to do |format|
       if @backing_track.save
         format.html { redirect_to @backing_track, notice: 'Backing track was successfully created.' }
@@ -69,6 +69,6 @@ class BackingTracksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def backing_track_params
-      params.require(:backing_track).permit(:song_title, :song_part, :user_id, :track)
+      params.require(:backing_track).permit(:song_title, :song_part, :track)
     end
 end

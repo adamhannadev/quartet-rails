@@ -2,21 +2,11 @@
 
 <p>Hello, <%= current_user.email %></p>
 
+<%= button_to 'Backing Tracks', backing_tracks_path, method: 'get' %>
+
 <p>Here are your recordings.</p>
 
- <ul>
-     <% @recordings.each do |r| %>
-     <%=  link_to "/" + r[:url] do %>
-     <li><%= r[:title] %> - <%= r[:recorded_date] %></li>
-     <% end %>
-     <% end %>
-
-</ul>
-
 <p>Here are your mixes.</p>
-
 <ul>
     <li>Birlinn - Mixed - Jane, Adam, Irena</li>
 </ul>
-
-<%= button_to "Record Part", choose_song_path, method: "get" %>

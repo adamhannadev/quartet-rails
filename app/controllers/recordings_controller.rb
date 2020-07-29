@@ -20,6 +20,10 @@ class RecordingsController < ApplicationController
     @track = BackingTrack.where("song_title = ? AND song_part = ?", params[:title], params[:part]).first
   end
 
+  def mix
+    @recordings = Recording.all
+  end
+
   # GET /recordings/1/edit
   def edit
   end

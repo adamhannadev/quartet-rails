@@ -1,0 +1,6 @@
+<h1>Recordings to mix</h1>
+
+
+<%= @recordings.each do |r| %>
+<p><%=link_to url_for(r.rec_file) do %> <%= r.title %> <% end %></p>
+<% end %>

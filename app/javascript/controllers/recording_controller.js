@@ -18,6 +18,7 @@ export default class extends Controller {
     this.state = {
       audios: []
     }
+    console.log("connected");
     this.initRecording();
   }
 

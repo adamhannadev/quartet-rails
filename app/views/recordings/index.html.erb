@@ -25,6 +25,9 @@
     <% end %>
   </tbody>
 </table>
+<div data-controller="song">
 
-<br>
-<%= collection_select(@track, :id, BackingTrack.all.group("song_title"), :id, :song_title, prompt: "Please select a song") %>
+  <%= select(:part, "part", %w[Soprano Alto Tenor Bass], {}, {data: {target: "song.part"}}) %>
+  <%= select_tag :title, options_for_select(@backing_tracks.map{ |track| [track.song_title] }), prompt: 'select', data: {target: "song.title", action: "click->song#defineParams"} %>
+  <a href="#" data-target="song.link">Go</a>
+</div>

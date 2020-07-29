@@ -5,6 +5,7 @@ class RecordingsController < ApplicationController
   # GET /recordings.json
   def index
     @recordings = Recording.all
+    @backing_tracks = BackingTrack.all.group("song_title")
   end
 
   # GET /recordings/1

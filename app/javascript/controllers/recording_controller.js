@@ -15,10 +15,10 @@ export default class extends Controller {
   static targets = ["activeTrack", "saved", "recFile", "part", "title", "user", "backingTrack"]
 
   connect() {
-    console.log("Hello from the recording controller.")
     this.state = {
       audios: []
     }
+    console.log("connected");
     this.initRecording();
   }
 
@@ -40,7 +40,8 @@ export default class extends Controller {
 
   start(e) {
     e.preventDefault();
-    // this.bgAudio.play();
+    // wait a moment before playing backing track
+    setTimeout(() => { this.backingTrackTarget.play() }, 1000);
     // wipe old data chunks
     this.chunks = [];
     // start recorder with 10ms buffer
@@ -49,8 +50,8 @@ export default class extends Controller {
 
   stop(e) {
     e.preventDefault();
-    // this.bgAudio.pause();
-    // this.bgAudio.currentTime = 0;
+    this.backingTrackTarget.pause();
+    this.backingTrackTarget.currentTime = 0;
     // stop the recorder
     this.mediaRecorder.stop();
     // say that we're not recording
@@ -64,7 +65,7 @@ export default class extends Controller {
     const audioURL = window.URL.createObjectURL(blob);
     this.savedTarget.src = audioURL;
     this.recFileTarget.href = audioURL;
-    this.recFileTarget.download = `${this.userTarget.innerHTML.split("@")[0]}-${this.titleTarget.value}-${this.partTarget.value}`;
+    this.recFileTarget.download = `${this.userTarget.innerHTML.split("@")[0]}-${this.titleTarget.innerHTML}-${this.partTarget.innerHTML}`;
 
   }
 

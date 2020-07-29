@@ -25,7 +25,9 @@
     <% end %>
   </tbody>
 </table>
+<div data-controller="song">
 
-<br>
-
-<%= link_to 'New Recording', new_recording_path %>
+  <%= select(:part, "part", %w[Soprano Alto Tenor Bass], {}, {data: {target: "song.part"}}) %>
+  <%= select_tag :title, options_for_select(@backing_tracks.map{ |track| [track.song_title] }), prompt: 'select', data: {target: "song.title", action: "click->song#defineParams"} %>
+  <a href="#" data-target="song.link">Go</a>
+</div>

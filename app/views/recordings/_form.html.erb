@@ -14,18 +14,12 @@
 
   <p data-target="recording.user"><%= current_user.email %> </p>
 
-  <div class="field">
-    <%= form.label :part %>
-    <%= select_tag "part", options_for_select([ "Soprano", "Alto", "Tenor", "Bass" ], "Soprano"), {"data-target" => "recording.part"}  %>
-  </div>
+  <h2 data-target="recording.title"><%= params[:title] %></h2>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= collection_select(:title, :song_title, BackingTrack.all.group("song_title"), :id, :song_title, prompt: true, "data-target" => "recording.title") %>
-  </div>
+  <h2 data-target="recording.part"><%= params[:part] %></h2>
 
-  <audio controls data-target="recording.backingTrack">
-    <source src="<%= url_for @tracks.first.track %>" type="audio/mp3">
+  <audio hidden="true" controls data-target="recording.backingTrack">
+    <source src="<%= url_for @track.track %>" type="audio/mp3">
   </audio>
 
   <audio controls data-target="recording.activeTrack">
@@ -40,6 +34,8 @@
 
   <%= form.label :rec_file %>
   <%= form.file_field :rec_file%>
+  <%= form.hidden_field :part, :value => params[:part]%>
+  <%= form.hidden_field :title, :value => params[:title]%>
 
 
   <div class="actions">

@@ -23,5 +23,7 @@
   <%=link_to url_for(@recording.rec_file) do %> <%= @recording.title %> <% end %>
 </p>
 
+<p>The blob file is - <%= @recording.rec_file %></p>
+
 <%= link_to 'Edit', edit_recording_path(@recording) %> |
 <%= link_to 'Back', recordings_path %>

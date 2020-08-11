@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :backing_tracks
-  
-  get "recordings/mix" => "recordings#mix"
+  resources :mixes
+  get '/mix' => "recordings#mix"
   get "recordings/new/:title/:part" => "recordings#new", as: 'new_rec'
   resources :recordings
   devise_for :users

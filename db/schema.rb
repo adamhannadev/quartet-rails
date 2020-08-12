@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_212217) do
+ActiveRecord::Schema.define(version: 2020_08_11_230228) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 2020_07_10_212217) do
     t.index ["user_id"], name: "index_backing_tracks_on_user_id"
   end
 
+  create_table "mixes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_mixes_on_user_id"
+  end
+
+  create_table "mixes_recordings", id: false, force: :cascade do |t|
+    t.integer "mix_id", null: false
+    t.integer "recording_id", null: false
+  end
+
   create_table "recordings", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "part"
@@ -65,5 +77,6 @@ ActiveRecord::Schema.define(version: 2020_07_10_212217) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "backing_tracks", "users"
+  add_foreign_key "mixes", "users"
   add_foreign_key "recordings", "users"
 end

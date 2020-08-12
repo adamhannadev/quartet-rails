@@ -1,0 +1,29 @@
+<%= form_with(model: mix, local: true) do |form| %>
+<% if mix.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(mix.errors.count, "error") %> prohibited this mix from being saved:</h2>
+
+  <ul>
+    <% mix.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= form.label :user_id %>
+  <%= form.text_field :user_id %>
+</div>
+<div class="field">
+  <%= form.label :recording_ids %>
+  <%= form.select(:recording_ids, Recording.all.collect {|r| [ "#{r.title} #{r.part} - #{r.user.email}", r.id ] }, 
+  { :prompt => "Please select"}, 
+  { :multiple => true, :size => 5 }) %>
+</div>
+
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>

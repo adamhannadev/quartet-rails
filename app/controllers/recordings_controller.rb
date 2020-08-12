@@ -33,11 +33,10 @@ class RecordingsController < ApplicationController
       puts fl.path
       puts cmd1, cmd2
     end
+    end
     cmd3 = `pwd && cd temp/mixing/#{username} && pwd && sox -m * mixed.mp3`
     puts cmd3
-    end 
-
-  #  system "rake audio:concat[#{rec_files[0]},#{rec_files[1]}]"
+    
   end
 
   # GET /recordings/1/edit

@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @mix.user_id %>
+</p>
+
+<p>
+  <% @path = rails_blob_path(@mix.mixed_file) %>
+  <audio controls>
+    <source src="<%= @path %>" type="audio/mp3">
+    Your browser does not support the audio tag.
+  </audio>
+</p>
+
+<%= link_to 'Edit', edit_mix_path(@mix) %> |
+<%= link_to 'Back', mixes_path %>

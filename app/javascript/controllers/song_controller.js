@@ -18,7 +18,7 @@ export default class extends Controller {
 
   defineParams() {
     console.log(this.titleTarget.value + " - " + this.partTarget.value)
-    this.linkTarget.href = `recordings/new/${this.titleTarget.value}/${this.partTarget.value}`;
+    this.linkTarget.href = `http://localhost:3000/recordings/new/${this.titleTarget.value}/${this.partTarget.value}`;
   }
 
 }

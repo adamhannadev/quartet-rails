@@ -17,7 +17,7 @@
 </div>
 <div class="field">
   <%= form.label :recording_ids %>
-  <%= form.select(:recording_ids, Recording.all.collect {|r| [ "#{r.title} #{r.part} - #{r.user.email}", r.id ] }, 
+  <%= form.select(:recording_ids, @recordings.collect {|r| [ "#{r.title} #{r.part} - #{r.user.email}", r.id ] }, 
   { :prompt => "Please select"}, 
   { :multiple => true, :size => 5 }) %>
 </div>

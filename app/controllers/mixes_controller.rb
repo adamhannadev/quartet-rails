@@ -5,6 +5,7 @@ class MixesController < ApplicationController
   # GET /mixes.json
   def index
     @mixes = Mix.all
+    @recordings = Recording.all.group("title")
   end
 
   # GET /mixes/1
@@ -15,6 +16,11 @@ class MixesController < ApplicationController
   # GET /mixes/new
   def new
     @mix = Mix.new
+    if params[:title]
+    @recordings = Recording.where(:title => params[:title]).where(:part => params[:part])
+    else
+      @recordings = Recording.all
+    end
   end
 
   # GET /mixes/1/edit

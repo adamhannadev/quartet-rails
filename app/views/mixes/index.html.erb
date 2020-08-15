@@ -12,16 +12,20 @@
 
   <tbody>
     <% @mixes.each do |mix| %>
-      <tr>
-        <td><%= mix.user_id %></td>
-        <td><%= link_to 'Show', mix %></td>
-        <td><%= link_to 'Edit', edit_mix_path(mix) %></td>
-        <td><%= link_to 'Destroy', mix, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= mix.user_id %></td>
+      <td><%= link_to 'Show', mix %></td>
+      <td><%= link_to 'Edit', edit_mix_path(mix) %></td>
+      <td><%= link_to 'Destroy', mix, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<div data-controller="recording-filter">
 
-<%= link_to 'New Mix', new_mix_path %>
+  <%= select(:part, "part", %w[Soprano Alto Tenor Bass], {}, {data: {target: "recording-filter.part"}}) %>
+  <%= select_tag :title, options_for_select(@recordings.map{ |rec| [rec.title] }), prompt: 'select', data: {target: "recording-filter.title", action: "click->recording-filter#defineParams"} %>
+  <a href="#" data-target="recording-filter.link">Go</a>
+</div>

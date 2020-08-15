@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :backing_tracks
-  resources :mixes
-  get '/mix' => "recordings#mix"
   get "recordings/new/:title/:part" => "recordings#new", as: 'new_rec'
+  get 'mixes/new/(:title)/(:part)', to: 'mixes#new'
   resources :recordings
+  resources :mixes
   devise_for :users
   get 'dashboard' => 'main#dashboard'
   root "main#index"

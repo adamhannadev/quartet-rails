@@ -5,7 +5,7 @@ class MixesController < ApplicationController
   # GET /mixes.json
   def index
     @mixes = Mix.all
-    @recordings = Recording.all
+    @recordings = Recording.all.group("title")
   end
 
   # GET /mixes/1

@@ -12,7 +12,7 @@ import { Controller } from "stimulus"
 const audioType = "audio/wav";
 
 export default class extends Controller {
-  static targets = ["activeTrack", "saved", "recFile", "part", "title", "user", "backingTrack"]
+  static targets = ["activeTrack", "saved", "field", "recFile", "part", "title", "user", "backingTrack"]
 
   connect() {
     this.state = {
@@ -65,7 +65,8 @@ export default class extends Controller {
     const audioURL = window.URL.createObjectURL(blob);
     this.savedTarget.src = audioURL;
     this.recFileTarget.href = audioURL;
-    this.recFileTarget.download = `${this.userTarget.innerHTML.split("@")[0]}-${this.titleTarget.innerHTML}-${this.partTarget.innerHTML}`;
+    formData.append('recFile', blob, `${this.userTarget.innerHTML.split("@")[0]}-${this.titleTarget.innerHTML}-${this.partTarget.innerHTML}.mp3`);
+    this.recFileTarget.download = `${this.userTarget.innerHTML.split("@")[0]}-${this.titleTarget.innerHTML}-${this.partTarget.innerHTML}.mp3`;
 
   }
 

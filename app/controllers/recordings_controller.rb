@@ -19,26 +19,7 @@ class RecordingsController < ApplicationController
     @recording = Recording.new
     @track = BackingTrack.where("song_title = ? AND song_part = ?", params[:title], params[:part]).first
   end
-
-  def mix
-    # GET /recordings/mix/:soprano/:alto/:tenor/:bass
-    @recordings = Recording.all
-    rec_files = []
-    username = current_user.email.slice(0..(current_user.email.index('@')-1))
-    @recordings.each do |r|
-      f = r.rec_file
-      f.open do |fl|
-        cmd1 = `mkdir -pv temp/mixing/#{username}`
-        cmd2 = `opusdec --force-wav #{fl.path} - | sox - temp/mixing/#{username}/#{username}-#{r.title}-#{r.part}.mp3`
-      puts fl.path
-      puts cmd1, cmd2
-    end
-    end
-    cmd3 = `pwd && cd temp/mixing/#{username} && pwd && sox -m * mixed.mp3`
-    puts cmd3
-    
-  end
-
+  
   # GET /recordings/1/edit
   def edit
   end

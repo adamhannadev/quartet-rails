@@ -1,5 +1,5 @@
 <div data-controller="recording">
-  <%= form_with(model: recording, local: true) do |form| %>
+  <%= form_with(model: recording, multipart: true, local: true) do |form| %>
   <% if recording.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(recording.errors.count, "error") %> prohibited this recording from being saved:</h2>
@@ -33,7 +33,7 @@
   <a href="" data-target="recording.recFile">Download</a>
 
   <%= form.label :rec_file %>
-  <%= form.file_field :rec_file%>
+
   <%= form.hidden_field :part, :value => params[:part]%>
   <%= form.hidden_field :title, :value => params[:title]%>
 
